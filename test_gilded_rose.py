@@ -1,6 +1,7 @@
 import unittest
 
-from GildedRose import Item, GildedRose
+from GildedRose import GildedRose
+from Item import Item
 
 
 class GildedRoseTest(unittest.TestCase):

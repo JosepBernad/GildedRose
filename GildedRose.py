@@ -5,11 +5,11 @@ class GildedRose(object):
         self.C = "Sulfuras, Hand of Ragnaros"
         self.items = items
 
-    def increaseQuality(self, item):
-        item.quality = min(49, item.quality + 1)
+    #def increaseQuality(self, item):
+    #    item.quality = min(49, item.quality + 1)
 
-    def decreaseQuality(self, item):
-        item.quality = max(0, item.quality - 1)
+    #def decreaseQuality(self, item):
+    #    item.quality = max(0, item.quality - 1)
 
     def updateQuality(self):
         for item in self.items:
@@ -91,13 +91,3 @@ class GildedRose(object):
                 elif item.quality < 50:
                     item.quality = item.quality + 1   # s < 0, A
             '''
-
-
-class Item:
-    def __init__(self, name, sell_in, quality):
-        self.name = name
-        self.sell_in = sell_in
-        self.quality = quality
-
-    def __repr__(self):
-        return "%s, %s, %s" % (self.name, self.sell_in, self.quality)

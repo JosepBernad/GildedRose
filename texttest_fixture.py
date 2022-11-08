@@ -1,6 +1,5 @@
 from __future__ import print_function
 
-from GildedRose import *
 from GildedRose2 import *
 from GildedRoseOriginal import *
 
@@ -9,7 +8,7 @@ import unittest
 if __name__ == "__main__":
     print("OMGHAI!")
 
-    iterations = 2
+    iterations = 4
 
     itemsOriginal = []
     items = []
