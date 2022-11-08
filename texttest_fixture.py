@@ -1,30 +1,43 @@
 from __future__ import print_function
 
-from gilded_rose import *
+from GildedRose import *
+from GildedRose2 import *
+from GildedRoseOriginal import *
+
+import unittest
 
 if __name__ == "__main__":
     print("OMGHAI!")
-    items = [
-        Item(name="+5 Dexterity Vest", sell_in=10, quality=20),
-        Item(name="Aged Brie", sell_in=2, quality=0),
-        Item(name="Elixir of the Mongoose", sell_in=5, quality=7),
-        Item(name="Sulfuras, Hand of Ragnaros", sell_in=0, quality=80),
-        Item(name="Sulfuras, Hand of Ragnaros", sell_in=-1, quality=80),
-        Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=15, quality=20),
-        Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=10, quality=49),
-        Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=5, quality=49),
-        Item(name="Conjured Mana Cake", sell_in=3, quality=6),  # <-- :O
+
+    iterations = 2
+
+    itemsOriginal = []
+    items = []
+
+    names = [
+        "Aged Brie",
+        "Backstage passes to a TAFKAL80ETC concert",
+        "Sulfuras, Hand of Ragnaros",
+        ""
     ]
 
-    days = 2
-    import sys
+    for i in range(-100, 100):
+        for j in range(-100, 100):
+            for name in names:
+                items.append(Item(name=name, sell_in=i, quality=j))
+                itemsOriginal.append(Item(name=name, sell_in=i, quality=j))
 
-    if len(sys.argv) > 1:
-        days = int(sys.argv[1]) + 1
-    for day in range(days):
+    tc = unittest.TestCase()
+
+    for day in range(1, iterations):
         print("-------- day %s --------" % day)
         print("name, sellIn, quality")
-        for item in items:
-            print(item)
-        print("")
-        GildedRose(items).update_quality()
+        GildedRoseOriginal(itemsOriginal).update_quality()
+        #  GildedRose(items).updateQuality()
+        GildedRose2(items).updateQuality()
+        for i in range(len(items) - 1):
+            if itemsOriginal[i].quality != items[i].quality or itemsOriginal[i].sell_in != items[i].sell_in:
+                print(itemsOriginal[i])
+                print(items[i])
+                tc.assertEqual(itemsOriginal[i].quality, items[i].quality)
+                tc.assertEqual(itemsOriginal[i].sell_in, items[i].sell_in)

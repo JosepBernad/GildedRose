@@ -1,51 +1,55 @@
-def increaseValue(n):
-    return min(49, n + 1)
-
-
-def decreaseValue(n):
-    return max(0, n - 1)
-
-
 class GildedRose(object):
     def __init__(self, items):
         self.A = "Aged Brie"
         self.B = "Backstage passes to a TAFKAL80ETC concert"
         self.C = "Sulfuras, Hand of Ragnaros"
-
         self.items = items
 
-    def update_quality(self):
+    def increaseQuality(self, item):
+        item.quality = min(49, item.quality + 1)
+
+    def decreaseQuality(self, item):
+        item.quality = max(0, item.quality - 1)
+
+    def updateQuality(self):
         for item in self.items:
 
             if item.name == self.A:
                 item.sell_in -= 1
-                item.quality = increaseValue(item.quality)
+                self.increaseQuality(item)
                 if item.sell_in < 0:
-                    item.quality = increaseValue(item.quality)
+                    self.increaseQuality(item)
+                if item.sell_in < 11:
+                    self.increaseQuality(item)
+                if item.sell_in < 6:
+                    self.increaseQuality(item)
 
             elif item.name == self.B:
                 item.sell_in -= 1
-                item.quality = increaseValue(item.quality)
+                self.increaseQuality(item)
                 if item.sell_in < 0:
                     item.quality = 0
+                if item.sell_in < 11:
+                    self.increaseQuality(item)
+                if item.sell_in < 6:
+                    self.increaseQuality(item)
 
             elif item.name != self.C:
                 item.sell_in -= 1
-                item.quality = decreaseValue(item.quality)
+                self.decreaseQuality(item)
                 if item.sell_in < 0:
-                    item.quality = decreaseValue(item.quality)
+                    self.decreaseQuality(item)
 
             # ----
-
+            '''
             if item.name == self.A or item.name == self.B:
-                # item.quality = increaseValue(item.quality)
                 if item.sell_in < 11:
-                    item.quality = increaseValue(item.quality)
+                    self.increaseQuality(item)
                 if item.sell_in < 6:
-                    item.quality = increaseValue(item.quality)
+                    self.increaseQuality(item)
             # elif item.name != self.C:
             # item.quality = decreaseValue(item.quality)
-            '''
+            
             # ----
 
             #if item.sell_in < 0:
