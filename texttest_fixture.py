@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from GildedRose2 import *
+from GildedRoseJosep import *
 from GildedRoseOriginal import *
 from Item import *
 
@@ -34,7 +34,7 @@ if __name__ == "__main__":
         print("name, sellIn, quality")
         GildedRoseOriginal(itemsOriginal).update_quality()
         #  GildedRose(items).updateQuality()
-        GildedRose2(items).updateQuality()
+        GildedRoseJosep(items).updateQuality()
         for i in range(len(items) - 1):
             if itemsOriginal[i].quality != items[i].quality or itemsOriginal[i].sell_in != items[i].sell_in:
                 print(itemsOriginal[i])

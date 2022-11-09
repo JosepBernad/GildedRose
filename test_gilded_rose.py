@@ -1,6 +1,6 @@
 import unittest
 
-from GildedRose2 import GildedRose2
+from GildedRoseJosep import GildedRoseJosep
 from GildedRoseOriginal import GildedRoseOriginal
 from Item import Item
 
@@ -28,7 +28,7 @@ class GildedRoseTest(unittest.TestCase):
 
         for i in range(1, iterations):
             GildedRoseOriginal(itemsOriginal).update_quality()
-            GildedRose2(itemsProcessed).updateQuality()
+            GildedRoseJosep(itemsProcessed).updateQuality()
 
             for j in range(len(itemsOriginal) - 1):
                 if itemsOriginal[i].quality != itemsProcessed[i].quality or \

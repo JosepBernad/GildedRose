@@ -5,12 +5,13 @@ class Item:
         self.quality = quality
 
     def increaseQuality(self):
-        if self.quality < 50:
-            self.quality = self.quality + 1
+        self.increaseQualityBy(1)
 
     def decreaseQuality(self):
-        if self.quality > 0:
-            self.quality = self.quality - 1
+        self.quality = max(0, self.quality - 1)
+
+    def increaseQualityBy(self, n):
+        self.quality = min(50, self.quality + n)
 
     def decreaseSellIn(self):
         self.sell_in = self.sell_in - 1
