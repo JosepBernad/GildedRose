@@ -1,7 +1,7 @@
 import unittest
 
 from GildedRoseJosep import GildedRoseJosep
-from GildedRoseOriginal import GildedRoseOriginal
+from gilded_rose import GildedRose
 from Item import Item
 
 
@@ -27,7 +27,7 @@ class GildedRoseTest(unittest.TestCase):
         itemsProcessed = itemsOriginal.copy()
 
         for i in range(1, iterations):
-            GildedRoseOriginal(itemsOriginal).update_quality()
+            GildedRose(itemsOriginal).update_quality()
             GildedRoseJosep(itemsProcessed).updateQuality()
 
             for j in range(len(itemsOriginal) - 1):
