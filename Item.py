@@ -20,7 +20,7 @@ class Item:
             self.increaseQuality()
 
     def decreaseSellIn(self):
-        self.sell_in = self.sell_in - 1
+        self.sell_in -= 1
 
     def __repr__(self):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
