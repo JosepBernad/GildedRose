@@ -2,7 +2,20 @@
 
 This is the python version of the Gilded Rose, and its original code and repository can be found [here](https://github.com/emilybache/GildedRose-Refactoring-Kata).
 
-## 1. Initial analysis
+> ### Table of contents
+> 1. [Initial analysis](#initial-analysis)
+> 2. [The first attempt](#first-attempt)
+> 3. [Still no solution but new ideas](#new-ideas)
+> 4. [How can I test it? Part I](#test-i)
+> 5. [Refactoring for the win](#refactoring)
+> 6. [The final code](#final-code)
+> 7. [How can I test it? Part II](#test-ii)
+>    - [Aged brie](#test-case-1)
+>    - [Backstage passes to a TAFKAL80ETC concert](#test-case-2)
+>    - [Sulfuras, Hand of Ragnaros](#test-case-3)
+>    - [Anything else](#test-case-4)
+
+## 1. Initial analysis <div id='initial-analysis'/>
 
 In order to have a deep understanding of the code, I highlighted the different properties of the object ``Item`` that are being evaluated in the `ìf` statements. After this step, I was able to notice that there weren't too many values that were considered in the different evaluations.
 
@@ -34,7 +47,7 @@ The final code with all the visual comments:
 
 ![Initial code analysis](./img/InitialCode.png)
 
-## 2. The first attempt
+## 2. The first attempt <div id='first-attempt'/> 
 
 Using all the information from the code with my comments, the first strategy I came out with was to trace all the values that every property had to have in order to execute each action.
 The result can be seen in the next image:
@@ -47,14 +60,14 @@ After this exercise, I tried to merge and simplify the different actions into on
 
 It didn't take me too much time to realize that this was not a good strategy, but I had some initial conclusions that for sure helped me later on.
 
-## 3. Still no solution but new ideas
+## 3. Still no solution but new ideas <div id='new-ideas'/>
 
 The solution was still out of my reach, but I had many ideas and data to keep working:
 - I could start dividing the problem by the ```name``` property, that should simplify the code.
 - We know that every time the ```quality``` property is increased or decreased, it's previously checked, so it is in the range ```[0, 50]```.
 - To simplify even more the code, I had to get rid of the nested levels and replace them with the  ```ìf elif else``` structures. This increases the readability and the simplicity of the code.
 
-## 4. How can I test it? Part I
+## 4. How can I test it? Part I <div id='test-i'/>
 
 I wanted to be as agile as possible to check my solutions so the first solution I came out with was to compare it with the output of the original ```gilded_rose``` output.
 Great, I had a reliable source of valid output to compare to, but... which initial values do I need?
@@ -111,7 +124,7 @@ class GildedRoseTest(unittest.TestCase):
 
 Once I had the test ready to run, it was time to unfold the `ìf` statements.
 
-## 5. Refactoring for the win
+## 5. Refactoring for the win <div id='refactoring'/>
 
 The first attempt was to keep the code as original as possible but using the next structure:
 
@@ -161,7 +174,7 @@ class Item:
 ````
 Of course, I created the constants MAX_QUALITY and MIN_QUALITY for extra readability and futureproof.
 
-## 6. The final code
+## 6. The final code <div id='final-code'/>
 
 After some thinking process and using the auxiliary methods, I ended up with the next GildedRose class:
 
@@ -202,7 +215,7 @@ This solution have some advantages over the original one:
 2. It can be easily scaled to incorporate new ```name``` values if needed.
 3. The code it's pretty self-explanatory of its behaviour. That's because there's one level of ``if`` nesting for each ```name``` value.
 
-## 7. How can I test it? Part II
+## 7. How can I test it? Part II <div id='test-ii'/>
 
 Now that I had a solution to go, I wanted to take special care of the test cases because it was not my best effort. The _brute-force_ method it's useful when you need a quick and dirty solution, but it is definitely not scalable and absolutely inefficient. For this reason I spent some time thinking what would be the minimal amount of tests required to check all possible flow paths.
 
@@ -224,7 +237,7 @@ def runTest(self, days, itemsExpected, itemsProcessed):
                 self.assertEqual(itemsExpected[j].sell_in, itemsProcessed[j].sell_in)
 ````
 
-### Aged brie
+### Aged brie <div id='test-case-1'/>
 
 - Possible ```quality``` values:
   - q<sub>1</sub>: `(-∞, 48]`
@@ -274,7 +287,7 @@ def testAgedBrie(self):
 
 Notice the commented lines for the redundant cases.
 
-### Backstage passes to a TAFKAL80ETC concert
+### Backstage passes to a TAFKAL80ETC concert <div id='test-case-2'/>
 
 - Possible ```quality``` values:
   - q<sub>1</sub>: `(-∞, 47]`
@@ -350,7 +363,7 @@ def testBackstage(self):
 
 Notice (again) the commented lines for the redundant cases.
 
-### Sulfuras, Hand of Ragnaros
+### Sulfuras, Hand of Ragnaros <div id='test-case-3'/>
 
 This is the easiest case because there's no updated values. The result of the `Item` once processed is exactly the same.
 
@@ -412,7 +425,7 @@ def testSulfuras(self):
     self.runTest(days, itemsExpected, itemsProcessed)
 ````
 
-### Anything else
+### Anything else <div id='test-case-4'/>
 
 - Possible ```quality``` values:
   - q<sub>1</sub>: `(-∞, 0)`
