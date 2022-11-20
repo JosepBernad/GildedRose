@@ -130,13 +130,13 @@ The first attempt was to keep the code as original as possible but using the nex
 
 ````python
 if item.name == "Aged Brie":
-    // Do stuff
+    # Do stuff
 elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-    // Do other stuff
+    # Do other stuff
 elif item.name == "Sulfuras, Hand of Ragnaros":
-    // Do other stuff
+    # Do other stuff
 else:
-    // Do other stuff
+    # Do other stuff
 ````
 
 This was the main strategy that I chose to follow because the only thing I had left to do was simplify the code inside each case. The first idea I started implementing was to create a method to increase and decrease the property ```quality``` which could be called at any time and then inside it make sure that it's value was always in the specified range ```[0, 50]``` to modify the value.
